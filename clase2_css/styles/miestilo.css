@@ -1,0 +1,65 @@
+/* comentarios sin comentarios
+de varias lineas*/
+
+
+body{
+    width: 600px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+h1 { 
+    font-style: italic;
+    color: blue;
+}
+hr {
+     width: 50%;
+}
+
+.clase1 {
+    width: 70%;
+    border-top: 1px solid tomato;
+    font-size: 10px;
+}
+p {
+    border: 1px dotted yellow;
+    font-size: 50px;
+    font-family: 'Times New Roman', 'Courier';
+    line-height: 3em;
+}
+
+.clase2 {
+    background-color: aqua;
+}
+
+#parrafo 
+{color:green;}
+
+
+div {
+    background-color: red;
+    width: 600px;
+
+}
+img {
+    opacity: 0.4;
+    width: 100%
+}
+
+.estilo-border{
+    background-color: rgb(18, 62, 88);
+    color: black;
+    padding: 50px 60px 80px;
+    border:  solid 60px;
+    border-top: dotted 80px;
+    border-color:  red;
+    margin: 20px;
+    border-radius: 50%;
+}
+
+span {
+    color: black;
+}
+
+
+
