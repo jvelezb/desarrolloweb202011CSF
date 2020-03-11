@@ -1,0 +1,131 @@
+@import 'base';
+
+$primer-color : red;
+$segundo-color:blue;;
+$fuente: Helvetica, sans-serif;
+$tamano-fuente: 18px;
+$ancho: 680px;
+
+body {
+    color: $primer-color;
+    font: $fuente;
+    font-size: $tamano-fuente;
+}
+
+#contenedor{
+    width: $ancho;
+
+}
+
+.clase{
+    color:$segundo-color;
+}
+
+
+.clase-anidada{
+    p{
+        text-decoration: underline;
+    }
+    a{
+        font-size: 25px;
+        &:visited{
+            color:gray;
+        }
+    }
+}
+
+@for $valor from 1 through 6{
+    h#{$valor}{
+        font-size: 50% - 5*$valor;
+    }
+}
+
+@each $lista in juan,pedro,pablo,luis{
+    .#{$lista}-foto{
+        border-width: 15px;
+    }
+}
+
+@mixin borde($tamano) {
+    border-width: $tamano*3;
+    color: white;
+}
+
+img{
+
+    @include borde(40px);
+}
+
+.img2{
+    @include borde(80px);
+}
+
+@function suma($valor1, $valor2){
+    @return $valor1 + $valor2;
+}
+
+.clase_funcion{
+    font-size: suma(20px,30px)
+}
+
+@function color_function($color){
+    @return $color;
+}
+.clase_funcion_2{
+    color: color_function(red);
+}
+
+%mensaje_compartido{
+    border: 1px solid red;
+    padding: 10px;
+    color: gray;    
+}
+
+%mensaje_compartido_2{
+    border: 10px dotted cyan;
+}
+
+.mensaje{
+    @extend %mensaje_compartido;
+}
+.mensaje_2{
+    @extend %mensaje_compartido;
+    @extend %mensaje_compartido_2;
+
+}
+
+@mixin mix1() {
+    border: 10px dotted cyan; 
+    
+}
+@mixin mix2(){
+   color : blue;
+
+}
+
+.clase_mixin{
+ @include mix1();
+ @include mix2();
+
+}
+
+
+$selector : 'alumnos';
+
+.#{$selector}_1{
+    color: #FF00FF;
+}
+
+.#{$selector}_2{
+    color: #FF00FF;
+}
+
+@media(min-width:768px) and (-webkit-min-device-pixel-ratio:2),
+    (min-width:768px) and (min-resolution:192dpi){
+        body{
+            @include borde(20px);
+            color: gray;
+        }
+    }
+
+
