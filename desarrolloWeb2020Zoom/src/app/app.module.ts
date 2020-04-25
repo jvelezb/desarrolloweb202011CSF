@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TituloPrincipalComponent } from './titulo-principal/titulo-principal.component';
-import { TercerComponenteComponent } from './tercer-componente/tercer-componente.component';
+import { TituloPrincipalComponent } from './main-components/titulo-principal/titulo-principal.component';
+import { TercerComponenteComponent } from './main-components/tercer-componente/tercer-componente.component';
 import { AppRoutingModule} from './app-routing.module';
 import { PageNotFoundComponent } from './main-components/page-not-found/page-not-found.component';
+import { ProfesoresModule } from './modules/profesores/profesores.module';
+import { AlumnosModule} from './modules/alumnos/alumnos.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { PageNotFoundComponent } from './main-components/page-not-found/page-not
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AlumnosModule,
+    ProfesoresModule
 
   ],
   providers: [],
