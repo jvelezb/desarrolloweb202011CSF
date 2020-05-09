@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Alumno } from '../../models/alumno';
+import { AlumnoService } from '../../services/alumno.service';
 
 @Component({
   selector: 'app-add-alumno',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddAlumnoComponent implements OnInit {
 
-  constructor() { }
+  nombreAlumno: string = "Juan Velez"
+
+
+  alumnos: Alumno[];
+  constructor(public alumnoService:AlumnoService) { }
+
+
 
   ngOnInit(): void {
+    this.obtenerAlumnos();
+  }
+
+  obtenerAlumnos(){
+    this.alumnoService.getAlumnos().subscribe(alumnos =>{
+      this.alumnos =alumnos;
+
+    });
+  }
+
+  sumar(){
+    this.nombreAlumno =this.nombreAlumno + "hola";
   }
 
 }

@@ -9,6 +9,16 @@ import { AppRoutingModule} from './app-routing.module';
 import { PageNotFoundComponent } from './main-components/page-not-found/page-not-found.component';
 import { ProfesoresModule } from './modules/profesores/profesores.module';
 import { AlumnosModule} from './modules/alumnos/alumnos.module';
+import { AddAlumnoComponent } from './modules/alumnos/components/add-alumno/add-alumno.component';
+
+import {registerLocaleData} from '@angular/common';
+import localesMx from '@angular/common/locales/es-MX';
+import localeBr from '@angular/common/locales/pt';
+import localeUS from '@angular/common/locales/en';
+
+registerLocaleData(localesMx, 'es-MX');
+registerLocaleData(localeBr,'pt');
+registerLocaleData(localeUS,'en');
 
 @NgModule({
   declarations: [
@@ -22,9 +32,9 @@ import { AlumnosModule} from './modules/alumnos/alumnos.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     AlumnosModule,
-    ProfesoresModule
-
+    ProfesoresModule,
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -7,10 +7,11 @@ import {AlumnosRoutingModule} from './alumnos-routing.module';
 
 
 @NgModule({
-  declarations: [AddAlumnoComponent, ListaAlumnosComponent],
+  declarations: [AddAlumnoComponent, ListaAlumnosComponent,AddAlumnoComponent],
   imports: [
     CommonModule,
     AlumnosRoutingModule
   ]
+
 })
 export class AlumnosModule { }

@@ -1,2 +1,6 @@
-<h1>Estoy en el formulario de añadir alumno</h1>
-<p>iadd-alumno works!</p>
+<h1 i18n>Add student</h1>
+<p i18n>{{nombreAlumno}}</p>
+<div *ngFor="let alumno of alumnos">
+    <p>{{alumno.matricula}}   - {{alumno.nombre}}:: {{alumno.carrera}}</p>
+</div>
+<button (click)="sumar()" class="btn btn-primary">Sumar</button>
