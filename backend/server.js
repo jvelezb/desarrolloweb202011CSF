@@ -72,13 +72,73 @@ router
     }
   })
   .get(function (req, res) {
-    Alumno.find(function (err, alumnos) {
+    limite = parseInt(req.body.limite);
+    matricula = req.body.matricula;
+
+    Alumno.find({ matricula: matricula }, function (err, alumnos) {
       if (err) {
         res.send(err);
       }
       res.status(200).send(alumnos);
-    });
+    }).limit(limite);
   });
+
+router
+  .route("/alumnos/:id_alumno")
+  .get(function (req, res) {
+    Alumno.findById(req.params.id_alumno, function (error, alumno) {
+      if (error) {
+        res.status(404).send({ message: "not found" });
+        return;
+      }
+      if (alumno == null) {
+        res.status(404).send({ alumno: "not found" });
+        return;
+      }
+      res.status(200).send(alumno);
+    });
+  })
+  .put(function (req, res) {
+    Alumno.findById(req.params.id_alumno, function (err, alumno) {
+      if (err) {
+        res.send(err);
+      }
+      alumno.nombre = req.body.nombre;
+      alumno.save(function (err) {
+        if (err) {
+          res.send(err);
+        }
+        res.json({ message: "alumno actualizado" });
+      });
+    });
+  })
+  .delete(function (req, res) {
+    Alumno.remove(
+      {
+        _id: req.params.id_alumno,
+      },
+      function (err, alumno) {
+        if (err) {
+          res.send(err);
+        }
+        res.json({ mensaje: "borrado con exito" });
+      }
+    );
+  });
+
+router.route("/alumnosv2/:matricula").get(function (req, res) {
+  Alumno.find({ matricula: req.params.matricula }, function (error, alumno) {
+    if (error) {
+      res.status(404).send({ message: "not found" });
+      return;
+    }
+    if (alumno == null) {
+      res.status(404).send({ alumno: "not found" });
+      return;
+    }
+    res.status(200).send(alumno);
+  }).sort({ nombre: 1 });
+});
 
 router.route("/clases").post(async function (req, res) {
   var clase = new Clase();
