@@ -2,7 +2,13 @@ var express = require("express"); //importar express
 var app = express();
 var bodyParser = require("body-parser");
 var morgan = require("morgan");
-
+const cors = require("cors"); //importar cors para su uso
+var corsOptions = {
+  origin: "*",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+app.use(cors(corsOptions));
+app.options("*", cors());
 app.use(morgan("dev"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,7 +30,19 @@ db.once("openUri", function () {
 //middleware
 var router = express.Router();
 
-router.use(function (req, res, next) {
+router.use((req, res, next) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  if (req.method === "OPTIONS") {
+    res.set(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
+    res.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH");
+  }
   next();
 }); //funcion habilita el middleware
 
@@ -75,12 +93,12 @@ router
     limite = parseInt(req.body.limite);
     matricula = req.body.matricula;
 
-    Alumno.find({ matricula: matricula }, function (err, alumnos) {
+    Alumno.find(function (err, alumnos) {
       if (err) {
         res.send(err);
       }
       res.status(200).send(alumnos);
-    }).limit(limite);
+    });
   });
 
 router

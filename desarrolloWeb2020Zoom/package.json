@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~9.1.4",
     "@angular/router": "~9.1.4",
     "bootstrap": "^4.0.0",
+    "cors": "^2.8.5",
     "ngx-bootstrap": "^5.6.1",
     "popper": "^1.0.1",
     "rxjs": "~6.5.4",

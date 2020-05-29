@@ -23,13 +23,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/style/main.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/style/main.scss"],
             "scripts": []
           },
           "configurations": {
@@ -80,17 +75,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "desarrolloWeb2020Zoom:build"
+            "browserTarget": "desarrolloWeb2020Zoom:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "desarrolloWeb2020Zoom:build:production"
+              "browserTarget": "desarrolloWeb2020Zoom:build:production",
+              "proxyConfig": "src/proxy.conf.json"
             },
-            "es":{
-              "browserTarget": "desarrolloWeb2020Zoom:build:es"
+            "es": {
+              "browserTarget": "desarrolloWeb2020Zoom:build:es",
+              "proxyConfig": "src/proxy.conf.json"
             },
-            "pt":{
-              "browserTarget": "desarrolloWeb2020Zoom:build:pt"
+            "pt": {
+              "browserTarget": "desarrolloWeb2020Zoom:build:pt",
+              "proxyConfig": "src/proxy.conf.json"
             }
           }
         },
@@ -107,10 +106,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
@@ -127,9 +123,7 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
