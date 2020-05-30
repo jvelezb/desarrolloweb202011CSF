@@ -14,19 +14,6 @@ import { map, retry, catchError, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AlumnoService {
-  handleError(error: HttpErrorResponse) {
-    let errorMessage = 'Unknown error!';
-    if (error.error instanceof ErrorEvent) {
-      // Client-side errorsi
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // Server-side errors
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    window.alert(errorMessage);
-    return throwError(errorMessage);
-  }
-
   endpoint = 'http://localhost:8080/api/alumnos';
 
   alumnos: Alumno[];
@@ -43,14 +30,29 @@ export class AlumnoService {
       headers: new HttpHeaders(headerDict),
     };
 
-    return this.http
-      .get(this.endpoint, requestOptions)
-      .pipe(map(this.extractData), retry(3), catchError(this.handleError));
+    return this.http.get(this.endpoint, requestOptions);
+  }
+
+  getrAlumno(matricula) {
+    return this.http.get(this.endpoint + '/' + matricula);
   }
 
   private extractData(res: Response) {
     let body = res;
     return body || {};
+  }
+
+  handleError(error: HttpErrorResponse) {
+    let errorMessage = 'Unknown error!';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side errorsi
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side errors
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
   }
 
   addAlumno(al: Alumno): void {

@@ -1,0 +1,6 @@
+<header>
+  <a routerLink="perfil" *ngIf="auth.loggedIn">Profile</a>
+
+  <button (click)="auth.login()" *ngIf="!auth.loggedIn">Log In</button>
+  <button (click)="auth.logout()" *ngIf="auth.loggedIn">Log Out</button>
+</header>
